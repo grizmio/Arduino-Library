@@ -1,3 +1,6 @@
+
+#define WIFIS_COUNT 3
+
 #include <WiFiClientSecure.h>
 #include <ThingerESP32.h>
 
@@ -5,15 +8,14 @@
 #define DEVICE_ID "your_device_id"
 #define DEVICE_CREDENTIAL "your_device_credential"
 
-#define SSID "your_wifi_ssid"
-#define SSID_PASSWORD "your_wifi_ssid_password"
-
 ThingerESP32 thing(USERNAME, DEVICE_ID, DEVICE_CREDENTIAL);
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
 
-  thing.add_wifi(SSID, SSID_PASSWORD);
+  thing.add_wifi(0, "CASASSID", "foo");
+  thing.add_wifi(1, "CABANIASSID", "bar");
+  thing.add_wifi(2, "OFICINASSID", "baz");
 
   // digital pin control example (i.e. turning on/off a light, a relay, configuring a parameter, etc)
   thing["led"] << digitalPin(LED_BUILTIN);

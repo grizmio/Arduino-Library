@@ -1,3 +1,24 @@
+
+
+A modification to allow more than just 1 WIFI ssid and password
+Every time a move the ESP32 thing with thingerio I need to flash it.
+Now you should be able to do:
+```
+#define _DEBUG_
+#define WIFI_CONNECTION_TIMEOUT 15000
+#define WIFIS_COUNT 3  // BEFORE include ThingerESP32.h
+#include <WiFiClientSecure.h>
+#include <ThingerESP32.h>
+
+setup(){
+	thing.setWifiConnectingTimeout(WIFI_CONNECTION_TIMEOUT);
+	thing.add_wifi(0, "CASASSID", "foo");
+	thing.add_wifi(1, "CABANIASSID", "bar");
+	thing.add_wifi(2, "OFICINASSID", "baz");
+ }
+```
+I have modified ESP32.ino example only.
+
 The Arduino Client Library is an easy to use client library to connect your IoT devices to the [thinger.io](https://thinger.io "thinger.io IoT Cloud Platform") IoT platform. This is a library specifically designed for the Arduino IDE, so you can easily install it in your environment and start connecting your devices within minutes.
 
 It supports multiple network interfaces like Ethernet, Wifi, and GSM. So you can use it in several devices like the following:
